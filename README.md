@@ -1,6 +1,6 @@
 <h1>ExpNo 5 : Implement Simple Hill Climbing Algorithm</h1> 
-<h3>Name:             </h3>
-<h3>Register Number:             </h3>
+<h3>Name: R K JAYA KRISNAA </h3>
+<h3>Register Number: 212223223002 </h3>
 <H3>Aim:</H3>
 <p>Implement Simple Hill Climbing Algorithm and Generate a String by Mutating a Single Character at each iteration </p>
 <h2> Theory: </h2>
@@ -59,3 +59,61 @@ Score: 1  Solution :  Artificial Intelligencf<br>
 Score: 1  Solution :  Artificial Intelligencf<br>
 Score: 1  Solution :  Artificial Intelligencf<br>
 Score: 0  Solution :  Artificial Intelligence<br>
+
+## Program : 
+
+```PYTHON
+# ExpNo 5 : Implement Simple Hill Climbing Algorithm
+# Name: R K JAYA KRISNAA
+# Register Number: 212223223002
+
+import random
+
+# Step 1: Generate a random string of the same length as the target
+def generate_random_solution(length):
+    return [chr(random.randint(32, 126)) for _ in range(length)]
+
+# Step 3: Evaluate the fitness/heuristic function (sum of ASCII differences)
+def evaluate(solution, target):
+    diff = 0
+    for i in range(len(target)):
+        diff += abs(ord(solution[i]) - ord(target[i]))
+    return diff
+
+# Step 2: Mutate a single random character at a time
+def mutate_solution(solution):
+    index = random.randint(0, len(solution) - 1)
+    solution[index] = chr(random.randint(32, 126))
+
+def main():
+    target = input()
+    best = generate_random_solution(len(target))
+    best_score = evaluate(best, target)
+
+    # Step 4: Loop until score reaches 0 (Global Minima)
+    while True:
+        print(f"Score: {best_score} Solution : {''.join(best)}")
+        
+        if best_score == 0:
+            break
+
+        new_solution = list(best)
+        mutate_solution(new_solution)
+        score = evaluate(new_solution, target)
+
+        # If the new state is better (lower score), accept it as current state
+        if score < best_score:
+            best = new_solution
+            best_score = score
+
+if __name__ == "__main__":
+    main()
+```
+
+## Output : 
+
+<img width="442" height="605" alt="image" src="https://github.com/user-attachments/assets/803d976f-7814-4015-8839-099f02bca514" />
+
+## Result : 
+
+Thus, the Simple Hill Climbing Algorithm was successfully implemented, that generate the target string by iteratively mutating a single character and evaluating the heuristic score until it reached zero (Global Minima), and the output was verified successfully.
